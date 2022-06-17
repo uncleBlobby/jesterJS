@@ -2,6 +2,8 @@ import { useState } from 'react'
 import axios from 'axios'
 import './App.css'
 
+import JokeCard from './Components/JokeCard'
+
 function App() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState([])
@@ -14,15 +16,16 @@ function App() {
     console.log(typeof(data))
   }
 
+  if ((data.length) === 0) {
+    fetchData()
+  }
+
   return (
     <div className="App">
-      Hello, jesterJS!
-
-      This is live.
+      <div className="App-header">jesterJS</div>
       {data.map(joke => {
-        return <p>{joke.title}{joke.joke}</p>
+        return <JokeCard title={joke.title} joke={joke.joke} />
       })}
-      <button onClick={fetchData}>Get Data</button>
     </div>
   )
 }

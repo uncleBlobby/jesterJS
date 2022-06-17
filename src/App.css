@@ -1,5 +1,14 @@
+Body {
+  background-color: #191919;
+  color: white;
+}
+
 .App {
+  background-color: #191919;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -15,13 +24,13 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 5vh;
+  width: 66vw;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .App-link {
@@ -39,4 +48,14 @@
 
 button {
   font-size: calc(10px + 2vmin);
+}
+
+.joke-card {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1vh;
+  margin: 1vh;
+  background-color: #292929;
+  width: 50vw;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
