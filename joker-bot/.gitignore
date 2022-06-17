@@ -1,0 +1,5 @@
+__pycache__
+jokes.db
+.env
+pythonENV.py
+node_modules/
