@@ -6,7 +6,7 @@ const port = 3001;
 
 const sqlite3 = require('sqlite3').verbose()
 
-const db = new sqlite3.Database('jokes.db', sqlite3.OPEN_READONLY)
+const db = new sqlite3.Database('/home/dustin/learning/python/reddit-bots/jesterJS/joker-bot/jokes.db', sqlite3.OPEN_READONLY)
 
 app.use(express.json());
 app.use(cors());
@@ -30,19 +30,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 })
-
-console.log(db.exec('SELECT * FROM jokes'))
-
-let jokes = [];
-
-db.all('SELECT * FROM master_jokes', (err, rows) => {
-    if (err) {
-        console.error(err.message)
-        throw err
-    }
-    console.log(rows)
-    //jokes.push(row)
-    //console.log(jokes)
-})
-
-console.log(jokes)
