@@ -51,7 +51,7 @@ function App() {
       <div className="joke-results-container">
       {data.map(joke => {
         return (
-          <JokeCard title={joke.title} joke={joke.joke}/>
+          <JokeCard title={joke.title} category={joke.category} joke={joke.joke} dateAdded={joke.createdAt}/>
         
       )
       })}
@@ -70,7 +70,7 @@ function App() {
     {filteredData.map(joke => {
       return (
 
-          <JokeCard title={joke.title} joke={joke.joke}/>
+          <JokeCard title={joke.title} category={joke.category} joke={joke.joke} dateAdded={joke.createdAt}/>
         
       ) 
     })}
