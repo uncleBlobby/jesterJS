@@ -7,10 +7,12 @@ import JokeCard from './Components/JokeCard'
 function App() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState([])
+  const [jokesPerPage, setJokesPerPage] = useState(100)
+  const [pageNumber, setPageNumber] = useState(0)
   const [searchString, setSearchString] = useState('')
 
   const fetchData = async () => {
-    const result = await axios.get('http://localhost:3001/')
+    const result = await axios.get(`http://localhost:3001/jokes/${pageNumber}/${jokesPerPage}`)
     console.log(result.data);
     setData(result.data)
     console.log(typeof(result.data))
@@ -34,6 +36,12 @@ function App() {
     }
   }
 
+  const clickNextPageBtn = () => {
+    console.log(`clicked next page button`)
+    setPageNumber(pageNumber => pageNumber + 1);
+    fetchData();
+  }
+
   // Loop over all the data and filter out the ones that don't match the search string
   const filteredData = data.filter(joke => {
     return joke.joke.toLowerCase().includes(searchString.toLowerCase())})
@@ -47,7 +55,10 @@ function App() {
         jesterJS
         <div className="App-header-search-bar"><input onKeyDown={(e) => submitSearch(e)} placeholder="search jokes..." id="joke-search-input"></input></div>
       </div>
-      <div className="App-status-bar">Showing {data.length} jokes.</div>
+      <div className="App-status-bar">
+        Page: {pageNumber}.
+      </div>
+      <div onClick={() => clickNextPageBtn()}className='pageButton'>Next Page</div>
       <div className="joke-results-container">
       {data.map(joke => {
         return (
@@ -65,7 +76,10 @@ function App() {
       jesterJS
       <div className="App-header-search-bar"><input onKeyDown={(e) => submitSearch(e)} placeholder="search jokes..." id="joke-search-input"></input></div>
     </div>
-    <div className="App-status-bar">Showing {filteredData.length} {searchString}-related jokes.</div>
+    <div className="App-status-bar">
+      Showing {filteredData.length} {searchString}-related jokes.
+      </div>
+    <div className='pageButton'>Next Page</div>
     <div className="joke-results-container">
     {filteredData.map(joke => {
       return (
