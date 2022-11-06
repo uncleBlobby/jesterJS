@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     console.log(`received request from ${req.ip}`);
     console.log(`detail: ${req}`)
     //res.send('Hello World!')
-    db.all('SELECT * FROM master_jokes', (err, rows) => {
+    db.all('SELECT * FROM jokes', (err, rows) => {
         if (err) {
             console.error(err.message)
             throw err
@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
         //console.log(rows)
         //jokes.push(row)
         //console.log(jokes)
+        console.log(`sending jokes!`);
         res.send(rows)
     })
 });
